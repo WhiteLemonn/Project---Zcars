@@ -3,7 +3,7 @@ import mysql.connector
 import sys
 
 # ---------------------- SQL Connection ----------------------
-def get_db_connection():
+def db_connection():
     return mysql.connector.connect(
         host="localhost",
         user="root",
@@ -14,7 +14,7 @@ def get_db_connection():
 # -------------------- User Management --------------------
 class UserManager:
     def __init__(self):
-        self.conn = get_db_connection()
+        self.conn = db_connection()
         self.cursor = self.conn.cursor(dictionary=True)
 
     def login(self):
@@ -58,11 +58,11 @@ class UserManager:
 # -------------------- Admin Management --------------------
 class AdminManager:
     def __init__(self):
-        self.conn = get_db_connection()
+        self.conn = db_connection()
         self.cursor = self.conn.cursor(dictionary=True)
 
     def login(self):
-        print("\n🛡️ Admin Login")
+        print("\n️ Admin Login")
         username = input("Admin Username: ")
         password = input("Admin Password: ")
 
@@ -82,7 +82,7 @@ class AdminManager:
 # -------------------- Car Management --------------------
 class CarManager:
     def __init__(self):
-        self.conn = get_db_connection()
+        self.conn = db_connection()
         self.cursor = self.conn.cursor(dictionary=True)
 
     def display_cars(self, car_type):
@@ -136,7 +136,7 @@ class CarManager:
 # -------------------- Admin CRUD --------------------
 class AdminCRUD:
     def __init__(self):
-        self.conn = get_db_connection()
+        self.conn = db_connection()
         self.cursor = self.conn.cursor(dictionary=True)
 
     # Cars CRUD
@@ -259,7 +259,7 @@ class ZCarsApp:
 
                 car_name = f"{brand} {model} {year}"
 
-                conn = get_db_connection()
+                conn = db_connection()
                 cursor = conn.cursor()
 
                 cursor.execute(
